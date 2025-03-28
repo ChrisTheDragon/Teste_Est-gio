@@ -14,7 +14,7 @@ CHROME_OPTIONS.add_argument("--no-sandbox")
 
 URL_BASE = "https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos"
 PDF_PATH = "Teste de Web Scraping/PDFs"
-ZIP_OUTPUT_FILENAME = "PDFs.zip"
+ZIP_OUTPUT_FILENAME = "Teste de Web Scraping/PDFs.zip"
 
 def setup_driver():
     """Configura e retorna uma instância do WebDriver."""
