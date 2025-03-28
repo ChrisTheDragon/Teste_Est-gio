@@ -15,7 +15,7 @@ chrome_options.add_argument("--no-sandbox")
 
 url_base = "https://www.gov.br/ans/pt-br/acesso-a-informacao/participacao-da-sociedade/atualizacao-do-rol-de-procedimentos"
 
-pdf_path = "PDFs"
+pdf_path = "Teste de Web Scraping/PDFs"
 
 pdf_links = []
 def Downloader(url_base, pdf_path):
@@ -39,8 +39,10 @@ def Downloader(url_base, pdf_path):
             response = requests.get(pdf_link)
             if response.status_code == 200:
                 file_name = os.path.join(pdf_path, os.path.basename(pdf_link))
+                print(f"Baixando {file_name} em {pdf_path}")
                 with open(file_name, 'wb') as pdf_file:
                     pdf_file.write(response.content)
+                print(f"Dowload concluído")
     finally:
         driver.quit()
 
@@ -51,6 +53,8 @@ def Compressor(folder_path, output_filename):
                 if file.endswith('.pdf'):
                     file_path = os.path.join(root, file)
                     zipf.write(file_path, arcname=file)
+                    print(f"Adicionando {file} ao arquivo {output_filename}")
+    print(f"Compactação concluída")
 
 
 Downloader(url_base, pdf_path)
