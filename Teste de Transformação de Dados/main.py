@@ -10,9 +10,11 @@ def extract_tables_from_pdf(pdf_path):
         with pdfplumber.open(pdf_path) as pdf:
             for page in pdf.pages:
                 extracted_table = page.extract_table()
+                print(f"Extraindo tabela da página {page.page_number}...")
                 if extracted_table:
                     df = pd.DataFrame(extracted_table)
                     tables.append(df)
+            print(f"{len(tables)} tabelas extraídas.")
     except Exception as e:
         print(f"Erro ao processar o PDF: {e}")
     return tables
