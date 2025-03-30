@@ -26,6 +26,11 @@ def save_tables_to_csv(tables, output_path):
     try:
         if tables:
             final_table = pd.concat(tables, ignore_index=True)
+            # Renomear as colunas OD e AMB
+            final_table.rename(columns={
+                'OD': 'Seg. Odontológica',
+                'AMB': 'Seg. Ambulatoria'
+            }, inplace=True)
             os.makedirs(os.path.dirname(output_path), exist_ok=True)
             final_table.to_csv(output_path, index=False, header=False, encoding='utf-8')
             print(f"Tabelas salvas com sucesso em: {output_path}")
