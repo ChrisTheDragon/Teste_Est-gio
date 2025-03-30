@@ -1,14 +1,14 @@
-CREATE DATABASE RELATORIO_CADOP;
+CREATE DATABASE IF NOT EXISTS RELATORIO_CADOP;
 USE RELATORIO_CADOP;
 
 CREATE TABLE operadoras_ans (
-    registro_ans INT(20) PRIMARY KEY,
+    registro_ans INT PRIMARY KEY,
     cnpj VARCHAR(18) NOT NULL UNIQUE,
     razao_social VARCHAR(150) NOT NULL,
     nome_fantasia VARCHAR(100),
     modalidade VARCHAR(50) NOT NULL,
     logradouro VARCHAR(150) NOT NULL,
-    numero VARCHAR(10),
+    numero VARCHAR(25),
     complemento VARCHAR(50),
     bairro VARCHAR(50) NOT NULL,
     cidade VARCHAR(50) NOT NULL,
@@ -31,7 +31,10 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-select * from operadoras_ans;
+select * from operadoras_ans where cnpj = '27252086000104';
+DROP TABLE operadoras_ans;
+TRUNCATE TABLE operadoras_ans;
+SHOW WARNINGS;
 
 CREATE TABLE PRIM_TRI_2023(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -39,8 +42,8 @@ CREATE TABLE PRIM_TRI_2023(
     reg_ans INT NOT NULL,
     cd_conta_contabil INT NOT NULL,
     descricao VARCHAR(500) NOT NULL,
-    vl_saldo_inicial DECIMAL(10, 2) NOT NULL,
-    vl_saldo_final DECIMAL(10, 2) NOT NULL
+    vl_saldo_inicial DECIMAL(20, 2) NOT NULL,
+    vl_saldo_final DECIMAL(20, 2) NOT NULL
 );
 
 LOAD DATA LOCAL INFILE "C:\\Users\\Christian\\Downloads\\1T2023.csv"
@@ -50,9 +53,8 @@ FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, VL_SALDO_INICIAL, VL_SALDO_FINAL)
+(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
 SET 
-	DATA = STR_TO_DATE(@DATA, '%Y-%m-%d'),
 	vl_saldo_inicial = REPLACE(@vl_saldo_inicial, ',', '.'),
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.');
 
