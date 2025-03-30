@@ -1,51 +1,43 @@
 {
-    "info": {
-      "_postman_id": "a1b2c3d4-e5f6-7890-g1h2-i3j4k5l6m7n8",
-      "name": "Operadoras de Saúde",
-      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "core-js": "^3.8.3",
+    "vue": "^3.2.13"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-plugin-eslint": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-vue": "^8.0.3"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
     },
-    "item": [
-      {
-        "name": "Buscar Operadoras",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "url": {
-            "raw": "http://localhost:5000/api/search?q=hospitalar",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "5000",
-            "path": ["api", "search"],
-            "query": [
-              {
-                "key": "q",
-                "value": "hospitalar"
-              }
-            ]
-          }
-        },
-        "response": []
-      },
-      {
-        "name": "Buscar por Código",
-        "request": {
-          "method": "GET",
-          "header": [],
-          "url": {
-            "raw": "http://localhost:5000/api/search?q=123",
-            "protocol": "http",
-            "host": ["localhost"],
-            "port": "5000",
-            "path": ["api", "search"],
-            "query": [
-              {
-                "key": "q",
-                "value": "123"
-              }
-            ]
-          }
-        },
-        "response": []
-      }
-    ]
-  }
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
+}

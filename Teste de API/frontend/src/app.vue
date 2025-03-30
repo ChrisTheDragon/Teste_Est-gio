@@ -1,26 +1,26 @@
 <template>
-    <div id="app">
-      <Search />
-    </div>
-  </template>
-  
-  <script>
-  import Search from './components/Search.vue'
-  
-  export default {
-    name: 'App',
-    components: {
-      Search
-    }
+  <div id="app">
+    <SearchComponent />
+  </div>
+</template>
+
+<script>
+import SearchComponent from './components/SearchComponent.vue';
+
+export default {
+  name: 'App',
+  components: {
+    SearchComponent
   }
-  </script>
-  
-  <style>
-  #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-  </style>
+}
+</script>
+
+<style>
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
+  margin-top: 60px;
+}
+</style>
