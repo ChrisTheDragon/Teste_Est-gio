@@ -31,10 +31,6 @@ ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 
-select * from operadoras_ans where cnpj = '27252086000104';
-DROP TABLE operadoras_ans;
-TRUNCATE TABLE operadoras_ans;
-SHOW WARNINGS;
 
 CREATE TABLE PRIM_TRI_2023(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -57,10 +53,6 @@ IGNORE 1 LINES
 SET 
 	vl_saldo_inicial = REPLACE(@vl_saldo_inicial, ',', '.'),
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.');
-
-select * from prim_tri_2023;
-truncate table prim_tri_2023;
-drop table prim_tri_2023;
 
 
 CREATE TABLE SEC_TRI_2023(
@@ -85,9 +77,6 @@ SET
 	vl_saldo_inicial = REPLACE(@vl_saldo_inicial, ',', '.'),
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.');
 
-select * from sec_tri_2023;
-truncate table sec_tri_2023;
-drop table sec_tri_2023;
 
 CREATE TABLE TER_TRI_2023(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -111,9 +100,6 @@ SET
 	vl_saldo_inicial = REPLACE(@vl_saldo_inicial, ',', '.'),
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.');
 
-select * from ter_tri_2023;
-truncate table ter_tri_2023;
-drop table ter_tri_2023;
 
 CREATE TABLE QUAR_TRI_2023(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -138,9 +124,6 @@ SET
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.'),
 	data = STR_TO_DATE(@data, '%d/%m/%Y');
 
-select * from quar_tri_2023;
-truncate table quar_tri_2023;
-drop table quar_tri_2023;
 
 CREATE TABLE PRIM_TRI_2024(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -148,8 +131,8 @@ CREATE TABLE PRIM_TRI_2024(
     reg_ans INT NOT NULL,
     cd_conta_contabil INT NOT NULL,
     descricao VARCHAR(500) NOT NULL,
-    vl_saldo_inicial DECIMAL(10) NOT NULL,
-    vl_saldo_final DECIMAL(10) NOT NULL
+    vl_saldo_inicial DECIMAL(20, 2) NOT NULL,
+    vl_saldo_final DECIMAL(20, 2)NOT NULL
 );
 
 LOAD DATA LOCAL INFILE "C:\\Users\\Christian\\Downloads\\1T2024.csv"
@@ -159,15 +142,11 @@ FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, VL_SALDO_INICIAL, VL_SALDO_FINAL)
+(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
 SET 
-	DATA = STR_TO_DATE(DATA, '%Y-%m-%d'),
 	vl_saldo_inicial = REPLACE(@vl_saldo_inicial, ',', '.'),
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.');
 
-select * from prim_tri_2024;
-truncate table prim_tri_2024;
-drop table prim_tri_2024;
 
 CREATE TABLE SEC_TRI_2024(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -175,8 +154,8 @@ CREATE TABLE SEC_TRI_2024(
     reg_ans INT NOT NULL,
     cd_conta_contabil INT NOT NULL,
     descricao VARCHAR(500) NOT NULL,
-    vl_saldo_inicial DECIMAL(10) NOT NULL,
-    vl_saldo_final DECIMAL(10) NOT NULL
+    vl_saldo_inicial DECIMAL(20, 2) NOT NULL,
+    vl_saldo_final DECIMAL(20, 2)NOT NULL
 );
 
 LOAD DATA LOCAL INFILE "C:\\Users\\Christian\\Downloads\\2T2024.csv"
@@ -186,14 +165,11 @@ FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, VL_SALDO_INICIAL, VL_SALDO_FINAL)
+(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
 SET 
-	DATA = STR_TO_DATE(DATA, '%Y-%m-%d'),
 	vl_saldo_inicial = REPLACE(@vl_saldo_inicial, ',', '.'),
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.');
 
-select * from sec_tri_2024;
-drop table sec_tri_2024;
 
 CREATE TABLE TER_TRI_2024(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -201,8 +177,8 @@ CREATE TABLE TER_TRI_2024(
     reg_ans INT NOT NULL,
     cd_conta_contabil INT NOT NULL,
     descricao VARCHAR(500) NOT NULL,
-    vl_saldo_inicial DECIMAL(10) NOT NULL,
-    vl_saldo_final DECIMAL(10) NOT NULL
+    vl_saldo_inicial DECIMAL(20, 2) NOT NULL,
+    vl_saldo_final DECIMAL(20, 2)NOT NULL
 );
 
 LOAD DATA LOCAL INFILE "C:\\Users\\Christian\\Downloads\\3T2024.csv"
@@ -212,14 +188,11 @@ FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, VL_SALDO_INICIAL, VL_SALDO_FINAL)
+(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
 SET 
-	DATA = STR_TO_DATE(DATA, '%Y-%m-%d'),
 	vl_saldo_inicial = REPLACE(@vl_saldo_inicial, ',', '.'),
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.');
 
-select * from ter_tri_2024;
-drop table ter_tri_2024;
 
 CREATE TABLE QUAR_TRI_2024(
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -227,8 +200,8 @@ CREATE TABLE QUAR_TRI_2024(
     reg_ans INT NOT NULL,
     cd_conta_contabil INT NOT NULL,
     descricao VARCHAR(500) NOT NULL,
-    vl_saldo_inicial DECIMAL(10) NOT NULL,
-    vl_saldo_final DECIMAL(10) NOT NULL
+    vl_saldo_inicial DECIMAL(20, 2) NOT NULL,
+    vl_saldo_final DECIMAL(20, 2)NOT NULL
 );
 
 LOAD DATA LOCAL INFILE "C:\\Users\\Christian\\Downloads\\4T2024.csv"
@@ -238,13 +211,8 @@ FIELDS TERMINATED BY ';'
 ENCLOSED BY '"'
 LINES TERMINATED BY '\n'
 IGNORE 1 LINES
-(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, VL_SALDO_INICIAL, VL_SALDO_FINAL)
+(DATA, REG_ANS, CD_CONTA_CONTABIL, DESCRICAO, @VL_SALDO_INICIAL, @VL_SALDO_FINAL)
 SET 
-	DATA = STR_TO_DATE(DATA, '%Y-%m-%d'),
 	vl_saldo_inicial = REPLACE(@vl_saldo_inicial, ',', '.'),
     vl_saldo_final = REPLACE(@vl_saldo_final, ',', '.');
     
-drop table quar_tri_2024;
-
-
-
